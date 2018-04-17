@@ -15,7 +15,7 @@
     bar = 9;
     console.log(foo, bar); // => 1, 9
     ```
-* 复杂类型: 使用引用去访问
+* 复杂类型: 使用引用去访问
     * `object`
     * `array`
     * `function`
@@ -27,10 +27,10 @@
     console.log(foo[0], bar[0]); // => 9, 9
     ```
 ## 引用（References）
-* 使用 `const` 声明引用类型，避免使用 `var`
-    > 为啥？这会确保你不能重新给引用赋值，以免造成 bug，也避免难以理解这段代码 
+* 使用 `const` 声明引用类型，避免使用 `var`
+    > 为啥？这会确保你不能重新给引用赋值，以免造成 bug，也避免难以理解这段代码 
     ```JavaScript
-    // 别这样
+    // 别这样
     var a = 1;
     var b = 2;
 
@@ -38,7 +38,7 @@
     const a = 1;
     const b = 2;
     ```   
-* 如果偏要重新赋值，使用 `let` 代替 `var`
+* 如果偏要重新赋值，使用 `let` 代替 `var`
     > 为啥？`let` 是块级作用域，`var` 作为函数级作用域会发生变量提升，在很多场景下没有必要并且难以理解那段代码
     ```JavaScript
     // 别这样
@@ -55,7 +55,7 @@
     ```    
 * 请注意 `let` 和 `const` 是块级作用域
     ```JavaScript
-    // const 和 let 只会存在于所定义的块中
+    // const 和 let 只会存在于所定义的块中
     {
         let a = 1;
         const b = 1;
@@ -63,8 +63,8 @@
     console.log(a); // 报错ReferenceError
     console.log(b); // 报错ReferenceError
     ```
-## 对象（Objects）
-* 创建对象使用字面量语法，简洁明了
+## 对象（Objects）
+* 创建对象使用字面量语法，简洁明了
     ```JavaScript
     // 别这样
     const item = new Object();
@@ -92,9 +92,9 @@
         name: 'San Francisco',
         [getKey('enabled')]: true,
     };
-    * 简写对象中的方法
+    * 简写对象中的方法
     ```JavaScript
-    // 别这样
+    // 别这样
     const atom = {
         value: 1,
 
@@ -112,12 +112,12 @@
         },
     };
     ```
-* 简写对象中的属性值
+* 简写对象中的属性值
     > 为啥？方便写，更易读
     ```JavaScript
     const lukeSkywalker = 'Luke Skywalker';
 
-    // 别这样
+    // 别这样
     const obj = {
         lukeSkywalker: lukeSkywalker,
     };
@@ -128,8 +128,8 @@
     };
 
     ```
-* 声明对象时，简写的属性写在前面
-    > 为啥？更加容易理解哪个属性用了些啥简写
+* 声明对象时，简写的属性写在前面
+    > 为啥？更加容易理解哪个属性用了些啥简写
     ```JavaScript
     const anakinSkywalker = 'Anakin Skywalker';
     const lukeSkywalker = 'Luke Skywalker';
@@ -155,9 +155,9 @@
     };
     ```
 * 只在不符合 JS 取名规则的属性名上加引号
-    > 为啥？可读性更好，还可以语法高亮，并且更加容易被 JS 引擎优化
+    > 为啥？可读性更好，还可以语法高亮，并且更加容易被 JS 引擎优化
     ```JavaScript
-    // 只在无效属性名
+    // 只在无效属性名
     const bad = {
         'foo': 3,
         'bar': 4,
@@ -171,8 +171,8 @@
         'data-blah': 5,
     };
     ```
-* 别直接使用 `Object.prototype` 中的方法，比如 `hasOwnProperty`，`propertyIsEnumerable`, `isPrototypeOf` 等等
-    > 为啥？这些方法可能被对象中的属性覆盖，对象也可能是空的，比如 `Object.create(null)` 创建的对象
+* 别直接使用 `Object.prototype` 中的方法，比如 `hasOwnProperty`，`propertyIsEnumerable`, `isPrototypeOf` 等等
+    > 为啥？这些方法可能被对象中的属性覆盖，对象也可能是空的，比如 `Object.create(null)` 创建的对象
     ```JavaScript
     // 别这样
     console.log(object.hasOwnProperty(key));
@@ -180,14 +180,14 @@
     // 要这样
     console.log(Object.prototype.hasOwnProperty.call(object, key));
 
-    // 这样最佳，在 module 级缓存
+    // 这样最佳，在 module 级缓存
     const has = Object.prototype.hasOwnProperty; 
     
     /* or */
     import has from 'has';
     console.log(has.call(object, key));
     ```
-    * 浅拷贝对象时，使用扩展（spread）操作符比 `Object.assign` 更好，可使用剩余（rest）操作符去获得一个新的包含被省略的属性的对象
+    * 浅拷贝对象时，使用扩展（spread）操作符比 `Object.assign` 更好，可使用剩余（rest）操作符去获得一个新的包含被省略的属性的对象
     ```JavaScript
     // 特糟糕
     const original = { a: 1, b: 2 };
@@ -195,7 +195,7 @@
     const copy = Object.assign(original, { c: 3 }); 
     delete copy.a; 
 
-    // 也别这样
+    // 也别这样
     const original = { a: 1, b: 2 };
     const copy = Object.assign({}, original, { c: 3 });
     // copy => { a: 1, b: 2, c: 3 }
@@ -209,7 +209,7 @@
     // noA => { b: 2, c: 3 }
     ```
 ## 数组（Arrays）
-* 创建数组时使用字面量语法
+* 创建数组时使用字面量语法
     ```JavaScript
     // 别这样
     const items = new Array();
@@ -217,7 +217,7 @@
     // 要这样
     const items = [];
     ```
-* 向数组添加元素时使用 `Array#push` 替代直接指定
+* 向数组添加元素时使用 `Array#push` 替代直接指定
     ```JavaScript
     const someStack = [];
 
@@ -229,7 +229,7 @@
     ```
 * 使用扩展（spread）操作符 `...` 拷贝数组
     ```JavaScript
-    // 别这样
+    // 别这样
     const len = items.length;
     const itemsCopy = [];
     let i;
@@ -240,7 +240,7 @@
     // 要这样
     const itemsCopy = [...items];
     ```
-* 将类数组对象（array-like object）转换为数组时用扩展（spread）操作符 `...` 代替 `Array.from`
+* 将类数组对象（array-like object）转换为数组时用扩展（spread）操作符 `...` 代替 `Array.from`
     ```JavaScript
     const foo = document.querySelectorAll('.foo');
 
@@ -258,7 +258,7 @@
     // 要这样
     const baz = Array.from(foo, bar);
     ```
-* 在数组方法的回调中要使用 return 语句，并且考虑使用箭头函数
+* 在数组方法的回调中要使用 return 语句，并且考虑使用箭头函数
     ```JavaScript
     // 要这样
     [1, 2, 3].map((x) => {
@@ -302,9 +302,9 @@
         return false;
     });
     ```
-* 当数组有多行时，在输入数组左半边括号之后和输入数组右半边括号之前使用换行符
+* 当数组有多行时，在输入数组左半边括号之后和输入数组右半边括号之前使用换行符
     ```JavaScript
-    // 别这样
+    // 别这样
     const arr = [
         [0, 1], [2, 3], [4, 5],
     ];
@@ -338,7 +338,7 @@
     ```
 ## 解构（Destructuring）
 * 当需要访问和使用对象的多个属性时使用对象解构
-    > 为啥？解构让你避免了为那几个属性创建临时的引用
+    > 为啥？解构让你避免了为那几个属性创建临时的引用
     ```JavaScript
     // 别这样
     function getFullName(user) {
@@ -370,7 +370,7 @@
     // 要这样
     const [first, second] = arr;
     ```
-* 多个值返回时使用对象解构，别用数组解构
+* 多个值返回时使用对象解构，别用数组解构
     > 为啥？这样做你后面可以更方便地添加其他属性或者改变顺序
     ```JavaScript
     // 别这样
@@ -388,10 +388,10 @@
         return { left, right, top, bottom };
     }
 
-    // 调用者只用宣传他们需要的部分
+    // 调用者只用宣传他们需要的部分
     const { left, top } = processInput(input);
     ```
-## 字符串（Strings）
+## 字符串（Strings）
 * 使用单引号`''`
     ```JavaScript
     // 别这样
@@ -403,8 +403,8 @@
     // 要这样
     const name = 'Capt. Janeway';
     ```
-* 没超过100个字符的字符串不要进行换行
-    > 为啥？换行是个痛苦的事，并且不利于代码搜索
+* 没超过100个字符的字符串不要进行换行
+    > 为啥？换行是个痛苦的事，并且不利于代码搜索
     ```JavaScript
     // 别这样
     const errorMessage = 'This is a super long error that was thrown because \
@@ -420,7 +420,7 @@
     // 要这样
     const errorMessage = 'This is a super long error that was thrown because of Batman. When you stop to think about how Batman had anything to do with this, you would get nowhere fast.';
     ```
-* 要在代码中构建字符串时，使用模板字符串替代字符串连接符
+* 要在代码中构建字符串时，使用模板字符串替代字符串连接符
     > 为啥？使用模板字符串更加易读，并且拥有简洁的换行和插值语法
     ```JavaScript
     // 别这样
@@ -428,7 +428,7 @@
         return 'How are you, ' + name + '?';
     }
 
-    // 也别这样
+    // 也别这样
     function sayHi(name) {
         return ['How are you, ', name, '?'].join();
     }
@@ -445,7 +445,7 @@
     ```
 * 不要使用 `eval()` 方法，这会导致很多问题
 * 去掉不必要的转义
-    > 为啥？反斜杠让代码可读性太差，因此我们只在必须的时候才用
+    > 为啥？反斜杠让代码可读性太差，因此我们只在必须的时候才用
     ```JavaScript
     // 别这样
     const foo = '\'this\' \i\s \"quoted\"';
@@ -454,9 +454,9 @@
     const foo = '\'this\' is "quoted"';
     const foo = `my name is '${name}'`;
     ```
-## 函数（Functions）
+## 函数（Functions）
 * 使用命名函数表达式替代函数声明
-    > 为啥？函数声明会被提升，这意味可以轻易地在函数定义之前去引用函数，这样可读性和可维护性太差。如果函数的定义太长或者非常复杂，这很干扰对文件剩余部分的理解，那就到了可以把它提取到自己专属模块的时候了！不要忘记给函数取一个贴切的名字，尽管函数名字可能可以从包含的变量中推断出来（现代浏览器或者 Babel 等编译器可以做到）。这让错误的调用栈消除臆测
+    > 为啥？函数声明会被提升，这意味可以轻易地在函数定义之前去引用函数，这样可读性和可维护性太差。如果函数的定义太长或者非常复杂，这很干扰对文件剩余部分的理解，那就到了可以把它提取到自己专属模块的时候了！不要忘记给函数取一个贴切的名字，尽管函数名字可能可以从包含的变量中推断出来（现代浏览器或者 Babel 等编译器可以做到）。这让错误的调用栈消除臆测
     ```JavaScript
     // 别这样
     function foo() {
@@ -474,15 +474,15 @@
     // ...
     };
     ```
-* 用小括号报过立即调用函数表达式（IIFE）
-    > 为啥？一个立即调用函数表达式是一个独立的单元，所以要包裹起来，这样也表达得更加清晰。注意在通用 module 中的任何地方都不应该使用 IIFE
+* 用小括号报过立即调用函数表达式（IIFE）
+    > 为啥？一个立即调用函数表达式是一个独立的单元，所以要包裹起来，这样也表达得更加清晰。注意在通用 module 中的任何地方都不应该使用 IIFE
     ```JavaScript
     // immediately-invoked function expression (IIFE)
     (function () {
         console.log('Welcome to the Internet. Please follow me.');
     }());
     ```
-* 不要在定义非函数代码块（if, while, 等等）声明方法。指派函数给一个变量来替代。浏览器将允许你这样做，但他们解析这语句可能有所不同。
+* 不要在定义非函数代码块（if, while, 等等）声明方法。指派函数给一个变量来替代。浏览器将允许你这样做，但他们解析这语句可能有所不同。
 * 注意: ECMA-262 将 `block` 定义为一组语句，函数的声明不是一个语句
     ```JavaScript
     // 别这样
@@ -500,7 +500,7 @@
         };
     }
     ```
-* 不要把一个参数命名为 `arguments`，这将排挤掉函数作用域中的 `arguments` 对象
+* 不要把一个参数命名为 `arguments`，这将排挤掉函数作用域中的 `arguments` 对象
     ``` JavaScript
     // 别这样
     function foo(name, options, arguments) {
@@ -550,7 +550,7 @@
     }
     ```
 * 避免默认参数的副作用
-    > 为啥？太混淆了
+    > 为啥？太混淆了
     ```JavaScript
     var b = 1;
     // 别这样
@@ -574,8 +574,8 @@
         // ...
     }
     ```
-* 不要使用函数构造器创建新的函数
-    > 为啥？这种通过字符串创建函数的方式类似于 `eval()`，这可能导致一些问题
+* 不要使用函数构造器创建新的函数
+    > 为啥？这种通过字符串创建函数的方式类似于 `eval()`，这可能导致一些问题
     ```JavaScript
     // 别这样
     var add = new Function('a', 'b', 'return a + b');
@@ -583,8 +583,8 @@
     // 依然别这样
     var subtract = Function('a', 'b', 'return a - b');
     ```
-* 在方法签名处打空格
-    > 为啥？一致性是好的，你不应该增加或移除空格当增加或移除一个名字
+* 在方法签名处打空格
+    > 为啥？一致性是好的，你不应该增加或移除空格当增加或移除一个名字
     ``` JavaScript
     // 别这样
     const f = function(){};
@@ -595,8 +595,8 @@
     const x = function () {};
     const y = function a() {};
     ```
-* 不要重新赋值函数参数
-    > 为啥？重新赋值参数会导致不可预计的行为，特别是访问 `arguments` 对象。这也会引起性能问题，特别是在 V8 中
+* 不要重新赋值函数参数
+    > 为啥？重新赋值参数会导致不可预计的行为，特别是访问 `arguments` 对象。这也会引起性能问题，特别是在 V8 中
     ```JavaScript
     // 别这样
     function f1(a) {
@@ -619,8 +619,8 @@
     // ...
     }
     ```
-* 对于可变参数的函数推荐使用扩展操作符 `...`
-    > 为啥？清晰！你不需要提供一个 context，组合 `new` 和 `apply` 也不太易用
+* 对于可变参数的函数推荐使用扩展操作符 `...`
+    > 为啥？清晰！你不需要提供一个 context，组合 `new` 和 `apply` 也不太易用
     ``` JavaScript
     // 别这样
     const x = [1, 2, 3, 4, 5];
@@ -666,11 +666,11 @@
         baz,
     );
     ```
-## 箭头函数（Arrow Functions）
+## 箭头函数（Arrow Functions）
 * 当你必须使用匿名函数时（比如当传递一个内联回调），使用箭头函数
-    > 为啥？箭头函数中的 `this` 指代的是定义函数时所处的对象，而非执行时的对象，在符合通常的使用情景，而且这个语法更简洁
+    > 为啥？箭头函数中的 `this` 指代的是定义函数时所处的对象，而非执行时的对象，在符合通常的使用情景，而且这个语法更简洁
     
-    >为啥不呢？如果是一个相当复杂的方法，你可能应该把逻辑转移到另一个函数表达式上
+    >为啥不呢？如果是一个相当复杂的方法，你可能应该把逻辑转移到另一个函数表达式上
     ```JavaScript
     // 别这样
     [1, 2, 3].map(function (x) {
@@ -685,7 +685,7 @@
     });    
     ```
 * 如果方法体的构成是一条单一的且无副作用的返回语句，省略花符号并使用隐式返回，否则，保持连接符号和 `return` 语句
-    > 为啥？语法糖。链式调用时可读性不错
+    > 为啥？语法糖。链式调用时可读性不错
     ```JavaScript
     // 别这样
     [1, 2, 3].map(number => {
@@ -726,7 +726,7 @@
     });
     ```
 * 如果表达式有多行，用括号包裹起来可读性更好
-    > 为啥？折让函数的开始和结尾都会清晰
+    > 为啥？折让函数的开始和结尾都会清晰
     ``` JavaScript
     // bad
     ['get', 'post', 'put'].map(httpMethod => Object.prototype.hasOwnProperty.call(
@@ -743,7 +743,7 @@
     )
     ));    
     ```
-* 如果你的函数只有单行且没有用花符号，那就省略括号，否则就保持括号包裹参数以达到清晰与一致性
+* 如果你的函数只有单行且没有用花符号，那就省略括号，否则就保持括号包裹参数以达到清晰与一致性
     > 为啥？视觉一致性
     ```JavaScript
     // 别这样
@@ -752,7 +752,7 @@
     // 要这样
     [1, 2, 3].map(x => x * x);
 
-    // 要这样
+    // 要这样
     [1, 2, 3].map(number => (
         `A long string with the ${number}. It’s so long that we don’t want it to take up space on the .map line!`
     ));
@@ -786,8 +786,8 @@
         return height > 256 ? largeSize : smallSize;
     };
     ```
-## 类和构造器（Classes & Constructors）
-* 使用 `class`，避免直接使用 `prototype`
+## 类和构造器（Classes & Constructors）
+* 使用 `class`，避免直接使用 `prototype`
     > 为啥？`class` 关键词更加简洁和易读
     ```JavaScript
     // 别这样
@@ -812,7 +812,7 @@
         }
     }
     ```
-* 继承时使用 `extends`
+* 继承时使用 `extends`
     > 为啥？这是一个内建方式继承，且不会破坏 `instanceof`
     ```JavaScript
     // 别这样
@@ -832,7 +832,7 @@
         }
     }
     ```
-* 为实现链式编程，方法应该返回 `this`
+* 为实现链式编程，方法应该返回 `this`
     ```JavaScript
     // 别这样
     Jedi.prototype.jump = function () {
@@ -866,7 +866,7 @@
     luke.jump()
         .setHeight(20);
     ```
-* 可以自定义 `toString()` 方法，只要保证运行没问题且无副作用就成
+* 可以自定义 `toString()` 方法，只要保证运行没问题且无副作用就成
     ```JavaScript
     class Jedi {
         constructor(options = {}) {
@@ -882,7 +882,7 @@
         }
     }
     ```
-* 不指定时，类有一个默认的构造器，所以没必要去写一个空构造器或者只是委派父类的构造器
+* 不指定时，类有一个默认的构造器，所以没必要去写一个空构造器或者只是委派父类的构造器
     ```JavaScript
     // 别这样
     class Jedi {
@@ -893,7 +893,7 @@
         }
     }
 
-    // 别这样
+    // 别这样
     class Rey extends Jedi {
         constructor(...args) {
             super(...args);
@@ -909,7 +909,7 @@
     }    
     ```
 * 避免重复声明类成员
-    > 为啥？重复声明的情况只有最后一个生效，毫无疑问重复声明是个 bug
+    > 为啥？重复声明的情况只有最后一个生效，毫无疑问重复声明是个 bug
     ```JavaScript
     // 别这样
     class Foo {
@@ -928,15 +928,15 @@
     }
     ```
 ## 模块
-* 使用 `import/export`，不使用非标准的模块系统。你可以编译成你偏爱的模块系统
+* 使用 `import/export`，不使用非标准的模块系统。你可以编译成你偏爱的模块系统
     > 为啥？模块是未来，让我们现在开始享受未来
     ```JavaScript
     
-    // 别这样
+    // 别这样
     const AirbnbStyleGuide = require('./AirbnbStyleGuide');
     module.exports = AirbnbStyleGuide.es6;
 
-    // 不错
+    // 不错
     import AirbnbStyleGuide from './AirbnbStyleGuide';
     export default AirbnbStyleGuide.es6;
 
@@ -944,8 +944,8 @@
     import { es6 } from './AirbnbStyleGuide';
     export default es6;        
     ```
-* 不要使用通配符导入
-    > 为啥？确保你只有一个单一的默认导出
+* 不要使用通配符导入
+    > 为啥？确保你只有一个单一的默认导出
     ```JavaScript
     // 别这样
     import * as AirbnbStyleGuide from './AirbnbStyleGuide';
@@ -954,9 +954,9 @@
     import AirbnbStyleGuide from './AirbnbStyleGuide';
     ```
 * 不要直接从 `import` 中 `export`
-    > 为啥？尽管一条语句很简洁，不过清晰地分开导入和导出更好
+    > 为啥？尽管一条语句很简洁，不过清晰地分开导入和导出更好
     ```JavaScript
-    // 别这样
+    // 别这样
     // filename es6.js
     export { es6 as default } from './AirbnbStyleGuide';
 
@@ -983,7 +983,7 @@
     } from 'foo';
     ```
 * 不要导出可变绑定
-    > 为啥？避免导出可变量。这个只应应用于特殊的场景，一般情况下只有不变的引用才应该导出
+    > 为啥？避免导出可变量。这个只应应用于特殊的场景，一般情况下只有不变的引用才应该导出
     ```JavaScript
     // 别这样
     let foo = 3;
@@ -994,7 +994,7 @@
     export { foo };
     ```
 * 如果模块中只需一个单一的导出，使用默认导出的方式更好
-    > 为啥？为了鼓励更多文件只导出一个东西，这会有更好的可读性和可维护性
+    > 为啥？为了鼓励更多文件只导出一个东西，这会有更好的可读性和可维护性
     ```JavaScript
     // 别这样
     export function foo() {}
@@ -1018,7 +1018,7 @@
     foo.init();
     ```
 * 多行的导入应该缩进并换行，像多行的数组和对象那种一样
-    > 为啥？应该遵循同规范中其他处一样的样式
+    > 为啥？应该遵循同规范中其他处一样的样式
     ```JavaScript
     // bad
     import {longNameA, longNameB, longNameC, longNameD, longNameE} from 'path';
@@ -1045,7 +1045,7 @@
     ```
 ## 迭代器和生成器（Iterators and Generators）
 * 不要使用迭代，使用 JavaScript 的高阶函数代替例如 `for-in` 或者 `for-of`
-    > 为啥？相比副作用，处理单纯函数的返回值更易理解
+    > 为啥？相比副作用，处理单纯函数的返回值更易理解
     
     > 使用 `map()` / `every()` / `filter()` / `find()` / `findIndex()` / `reduce()` / `some()` / ... 等等来遍历数组, 使用 `Object.keys()` / `Object.values()` / `Object.entries()`来生成数组就可以遍历对象了
     ```JavaScript
@@ -1085,8 +1085,8 @@
     const increasedByOne = numbers.map(num => num + 1);
     ```
 * 目前不要使用生成器
-    > 为啥？这还不能很好的编译到 ES5 
-* 如果你必须使用生成器，或者你无视我们的忠告，请确保函数签名有正确的间隔
+    > 为啥？这还不能很好的编译到 ES5 
+* 如果你必须使用生成器，或者你无视我们的忠告，请确保函数签名有正确的间隔
     > 为啥？函数和 `*` 有些概念上的相似，`*` 不是函数的修饰符，`function*` 是一个独特的构造器，不同于 `function`
     ```JavaScript
     // 别这样
@@ -1170,7 +1170,7 @@
 
     const isJedi = getProp('jedi');
     ```
-* 计算乘方时使用幂运算符 `**`
+* 计算乘方时使用幂运算符 `**`
     ```JavaScript
     // 别这样
     const binary = Math.pow(2, 10);
@@ -1178,8 +1178,8 @@
     // 要这样
     const binary = 2 ** 10;
     ```
-## 变量（Variables）
-* 使用 `const` 或者 `let` 声明变量，否则会是全局变量。我们要避免污染全局变量，行星队长警告过我们
+## 变量（Variables）
+* 使用 `const` 或者 `let` 声明变量，否则会是全局变量。我们要避免污染全局变量，行星队长警告过我们
     ```JavaScript
     // 别这样
     superPower = new SuperPower();
@@ -1188,9 +1188,9 @@
     const superPower = new SuperPower();
     ```
 * 每个变量用单独的 `const` 或 `let` 声明
-    > 为啥？这样做就很轻松去增加新的变量，你不用担心去写 `;` 还是 `,`。此外，在调试的时候你还可以进行单步调试而不是一次全部跳过
+    > 为啥？这样做就很轻松去增加新的变量，你不用担心去写 `;` 还是 `,`。此外，在调试的时候你还可以进行单步调试而不是一次全部跳过
     ```JavaScript
-    // 别这样
+    // 别这样
     const items = getItems(),
         goSportsTeam = true,
         dragonball = 'z';
@@ -1228,8 +1228,8 @@
     let i;
     let length;
     ```
-* 在需要的地方需要的时候再给变量赋值
-    > 为啥？`let` 和 `const` 是块级作用域有效，不是函数级作用域
+* 在需要的地方需要的时候再给变量赋值
+    > 为啥？`let` 和 `const` 是块级作用域有效，不是函数级作用域
     ```JavaScript
     // 别这样
     function checkName(hasName) {
@@ -1262,7 +1262,7 @@
 
         return name;
     }
-    ```
+    ```
 * 不要链条形式给变量赋值
     > 为啥？链式赋值会创建隐式全局变量
     ```JavaScript
@@ -1293,7 +1293,7 @@
 * 不要使用 `++` 和 `--`
     > 为啥？根据 eslint 文档，一元递增和递减语句会受到自动分号插入的影响，并且可能导致应用程序中的值递增或递减，从而导致无提示错误。使用像 num + = 1 而不是 num++ 或 num++ 这样的语句来更改数值也更具有表现力。禁止一元递增和递减语句也会阻止您无意中预先递增/预递减值，这也会导致程序中的意外行为
     ```JavaScript
-    // 别这样
+    // 别这样
     const array = [1, 2, 3];
     let num = 1;
     num++;
@@ -1319,7 +1319,7 @@
     const truthyCount = array.filter(Boolean).length;
     ```
 * 给变量赋值时避免在 `=` 后面换行。如果一定要这样做，用 `()` 包裹起来
-    > 为啥？这种换号让赋值看起来很混淆
+    > 为啥？这种换号让赋值看起来很混淆
     ```JavaScript
     // 别这样
     const foo =
@@ -1337,8 +1337,8 @@
     // 要这样
     const foo = 'superLongLongLongLongLongLongLongLongString';
     ```
-## 提升（Hoisting）
-* 使用 `var` 关键字声明变量会使它的作用范围提升到它所在的函数作用域，但赋值不会。`let` 和 `const` 不会有这样的表现，但是在声明 `let` 或 `const` 变量之前对这个变量使用 `typeof` 会抛出 `ReferenceError`
+## 提升（Hoisting）
+* 使用 `var` 关键字声明变量会使它的作用范围提升到它所在的函数作用域，但赋值不会。`let` 和 `const` 不会有这样的表现，但是在声明 `let` 或 `const` 变量之前对这个变量使用 `typeof` 会抛出 `ReferenceError`
     ```JavaScript
     // 这没法工作（如果没有定义一个叫 notDefined 的全局变量）
     function example() {
@@ -1391,7 +1391,7 @@
         };
     }
 
-    // 当函数变量和函数名称一样时也是如此
+    // 当函数变量和函数名称一样时也是如此
     function example() {
         console.log(named); // => undefined
 
@@ -1402,7 +1402,7 @@
         };
     }
     ```
-* 函数声明方式会提升名称和函数体
+* 函数声明方式会提升名称和函数体
     ```JavaScript
     function example() {
         superPower(); // => Flying
@@ -1413,21 +1413,21 @@
     }
     ```
 ## 比较运算符和相等（Comparison Operators & Equality）
-* 使用 `===` 和 `!==` 代替 `==` 和 `!=`
-* 条件语句比如 `if` 使用 abstract 方法 `ToBoolean` 强制使其遵循以下规则:
+* 使用 `===` 和 `!==` 代替 `==` 和 `!=`
+* 条件语句比如 `if` 使用 abstract 方法 `ToBoolean` 强制使其遵循以下规则:
     * **Objects** 被计算成 **true**
     * **Undefined** 被计算成 **false**
     * **Null** 被计算成 **false**
     * **Booleans** 被计算为 **boolean的值**
-    * **Numbers** 在值为 **+0, -0, NaN 时为false**，其他情况为 **true**
-    * **Strings** 在 **空字符串`''`** 时为 **false**，其他情况为 **true**
+    * **Numbers** 在值为 **+0, -0, NaN 时为false**，其他情况为 **true**
+    * **Strings** 在 **空字符串`''`** 时为 **false**，其他情况为 **true**
     ```JavaScript
     if ([0] && []) {
         // true
         // 一个数组（即便是空数组）是一个对象，对象就会被计算为 true 
     }
     ```
-* 比较布尔类型时用简写形式，但显式比较字符串和数字
+* 比较布尔类型时用简写形式，但显式比较字符串和数字
     ```JavaScript
     // 别这样
     if (isValid === true) {
@@ -1460,7 +1460,7 @@
     }
     ```
 * 在 `case`、`default` 中，使用花括号创建代码块来包裹含有 `let`、`const`、`function`、`class` 等声明语法的语句
-    > 为啥？声明语法是在整个 `swtich` 中是可见了，但只要赋值了才会初始化，这只会在走到它的 `case` 语句时才会发生。在多个 `case` 语句中声明相同的东西时会出现问题
+    > 为啥？声明语法是在整个 `swtich` 中是可见了，但只要赋值了才会初始化，这只会在走到它的 `case` 语句时才会发生。在多个 `case` 语句中声明相同的东西时会出现问题
     ```JavaScript
     // 别这样
     switch (foo) {
@@ -1503,7 +1503,7 @@
         }
     }
     ```
-* 三元操作符不应该嵌套使用，并且通常应该放在单行
+* 三元操作符不应该嵌套使用，并且通常应该放在单行
     ```JavaScript
     // 别这样
     const foo = maybe1 > maybe2
@@ -1521,7 +1521,7 @@
     // 最佳
     const foo = maybe1 > maybe2 ? 'bar' : maybeNull;
     ```
-* 避免无必要的三元操作符
+* 避免无必要的三元操作符
     ```JavaScript
     // 别这样
     const foo = a ? a : b;
@@ -1533,13 +1533,13 @@
     const bar = !!c;
     const baz = !c;
     ```
-* 混合使用操作符时，用小括号包裹起来。唯一的例外是标准算术运算符（`+`, `-`, `*`, `&`, `/`），因为它的存在优先级问题
-    > 为啥？提高可读性，表达开发者的意图
+* 混合使用操作符时，用小括号包裹起来。唯一的例外是标准算术运算符（`+`, `-`, `*`, `&`, `/`），因为它的存在优先级问题
+    > 为啥？提高可读性，表达开发者的意图
     ```JavaScript
     // 别这样
     const foo = a && b < 0 || c > 0 || d + 1 === 0;
 
-    // 别这样
+    // 别这样
     const bar = a ** b - 5 % d;
 
     // 别这样
@@ -1548,7 +1548,7 @@
         return d;
     }
 
-    // 要这样
+    // 要这样
     const foo = (a && b < 0) || c > 0 || (d + 1 === 0);
 
     // 要这样
@@ -1569,7 +1569,7 @@
     if (test)
         return false;
 
-    // 别这样
+    // 别这样
     if (test) return false;
 
     // 要这样
@@ -1585,7 +1585,7 @@
         return false;
     }
     ```
-* 如果你在 `if`、`else` 中使用了多行代码块，把 `else` 放在 `if` 块结束的花括号的同一行
+* 如果你在 `if`、`else` 中使用了多行代码块，把 `else` 放在 `if` 块结束的花括号的同一行
     ```JavaScript
     // 别这样
     if (test) {
@@ -1604,7 +1604,7 @@
         thing3();
     }
     ```
-* 如果一个 `if` 代码块总会执行 `return` 语句，那么之后的 `else` 代码块就不是必须的。如果包含返回值的 `if` 代码块之后的 `else if` 代码块也有 `return` 语句，那么可以分成多个 `if` 代码块
+* 如果一个 `if` 代码块总会执行 `return` 语句，那么之后的 `else` 代码块就不是必须的。如果包含返回值的 `if` 代码块之后的 `else if` 代码块也有 `return` 语句，那么可以分成多个 `if` 代码块
     ```JavaScript
     // 别这样
     function foo() {
@@ -1644,7 +1644,7 @@
         return y;
     }
 
-    // 要这样
+    // 要这样
     function cats() {
         if (x) {
             return x;
@@ -1666,16 +1666,16 @@
         }
     }
     ```
-## 控制语句（Control Statement）
+## 控制语句（Control Statement）
 * 如果您的控制语句（`if`, `while` 等等）变得太长或超过最大一行长度，则可以将每个（分组）条件放入一个新行中。逻辑运算符应该放在开头
-    > 为啥？要求操作符在行开头可以保持操作符对齐并遵循类似于方法链的规范。这也通过视觉上遵循复杂逻辑来提高可读性
+    > 为啥？要求操作符在行开头可以保持操作符对齐并遵循类似于方法链的规范。这也通过视觉上遵循复杂逻辑来提高可读性
     ```JavaScript
-    // 别这样
+    // 别这样
     if ((foo === 123 || bar === 'abc') && doesItLookGoodWhenItBecomesThatLong() && isThisReallyHappening()) {
         thing1();
     }
 
-    // 别这样
+    // 别这样
     if (foo === 123 &&
         bar === 'abc') {
         thing1();
@@ -1703,7 +1703,7 @@
         thing1();
     }
 
-    // 要这样
+    // 要这样
     if (
         (foo === 123 || bar === 'abc')
         && doesItLookGoodWhenItBecomesThatLong()
@@ -1712,12 +1712,12 @@
         thing1();
     }
 
-    // 要这样
+    // 要这样
     if (foo === 123 && bar === 'abc') {
         thing1();
     }
     ```
-* 不要使用选择操作符代替控制语句
+* 不要使用选择操作符代替控制语句
     ```JavaScript
     // 别这样
     !isRunning && startRunning();
@@ -1727,10 +1727,10 @@
         startRunning();
     }
     ```
-## 注释（Comments）
+## 注释（Comments）
 * 多行注释时使用 `/** ... */`
     ```JavaScript
-    // 别这样
+    // 别这样
     // make() returns a new element
     // based on the passed in tag name
     //
@@ -1757,7 +1757,7 @@
     ```
 * 使用 `//` 进行单行注释。将单行注释放在被评论主题的上方。在注释之前打一个空行，除非它位于代码块的第一行
     ```JavaScript
-    // 别这样
+    // 别这样
     const active = true;  // is current tab
 
     // 要这样
@@ -1773,7 +1773,7 @@
         return type;
     }
 
-    // 要这样
+    // 要这样
     function getType() {
         console.log('fetching type...');
 
@@ -1825,8 +1825,8 @@
         return element;
     }
     ```
-* 使用 `FIXME` 或 `TODO` 为注释添加前缀可以帮助其他开发人员快速了解你关于此处的意图。这与常规注释不同，因为它们是可操作的。`FIXME: -- 需要搞清楚` 或 `TODO: -- 需要实现`
-* 使用 `// FIXME:` 来注释问题
+* 使用 `FIXME` 或 `TODO` 为注释添加前缀可以帮助其他开发人员快速了解你关于此处的意图。这与常规注释不同，因为它们是可操作的。`FIXME: -- 需要搞清楚` 或 `TODO: -- 需要实现`
+* 使用 `// FIXME:` 来注释问题
     ```JavaScript
     class Calculator extends Abacus {
         constructor() {
@@ -1837,10 +1837,10 @@
         }
     }
     ```
-## 空格（Whitespace）
+## 空格（Whitespace）
 * 缩进用 2 个空格
     ```JavaScript
-    // 别这样
+    // 别这样
     function foo() {
     ∙∙∙∙let name;
     }
@@ -1855,9 +1855,9 @@
     ∙∙let name;
     }
     ```
-* 左花括号的左边打 1 个空格
+* 左花括号的左边打 1 个空格
     ```JavaScript
-    // 别这样
+    // 别这样
     function test(){
         console.log('test');
     }
@@ -1879,7 +1879,7 @@
         breed: 'Bernese Mountain Dog',
     });
     ```
-* 在控制语句（`if`, `whilte` 等等）与左边的小括号直接打 1 个空格。函数的参数列表、函数名、函数调用和声明之间不要打空格
+* 在控制语句（`if`, `whilte` 等等）与左边的小括号直接打 1 个空格。函数的参数列表、函数名、函数调用和声明之间不要打空格
     ```JavaScript
     // 别这样
     if(isJedi) {
@@ -1901,7 +1901,7 @@
         console.log('Swooosh!');
     }
     ```
-* 用空格隔开操作符
+* 用空格隔开操作符
     ```JavaScript
     // 别这样
     const x=y+5;
@@ -1911,7 +1911,7 @@
     ```
 * 结束文件时打一个换行
     ```JavaScript
-    // 别这样
+    // 别这样
     import { es6 } from './AirbnbStyleGuide';
     // ...
     export default es6;
@@ -1925,7 +1925,7 @@
     // ...
     export default es6;↵
     ```
-* 链式调用时时使用缩进（超过 2 个方法链）。把 `.` 放在前面，它强调该行是一个方法调用，而不是一条新的语句
+* 链式调用时时使用缩进（超过 2 个方法链）。把 `.` 放在前面，它强调该行是一个方法调用，而不是一条新的语句
     ```JavaScript
     // 别这样
     $('#items').find('.selected').highlight().end().find('.open').updateCount();
@@ -1962,10 +1962,10 @@
         .attr('transform', `translate(${radius + margin},${radius + margin})`)
         .call(tron.led);
 
-    // 要这样
+    // 要这样
     const leds = stage.selectAll('.led').data(data);
     ```
-* 在代码块和后面的语句之间打一个空行
+* 在代码块和后面的语句之间打一个空行
     ```JavaScript
     // 别这样
     if (foo) {
@@ -2020,7 +2020,7 @@
 
     return arr;
     ```
-* 不要用在代码块中填充空行
+* 不要用在代码块中填充空行
     ```JavaScript
     // 别这样
     function bar() {
@@ -2051,7 +2051,7 @@
         console.log(foo);
     }
 
-    // 要这样
+    // 要这样
     if (baz) {
         console.log(qux);
     } else {
@@ -2060,7 +2060,7 @@
     ```
 * 小括号里不要打空格
     ```JavaScript
-    // 别这样
+    // 别这样
     function bar( foo ) {
         return foo;
     }
@@ -2082,7 +2082,7 @@
     ```
 * 中括号里不要打空格
     ```JavaScript
-    // 别这样
+    // 别这样
     const foo = [ 1, 2, 3 ];
     console.log(foo[ 0 ]);
 
@@ -2090,7 +2090,7 @@
     const foo = [1, 2, 3];
     console.log(foo[0]);
     ```
-* 在花括号里添加空格
+* 在花括号里添加空格
     ```JavaScript
     // 别这样
     const foo = {clark: 'kent'};
@@ -2099,7 +2099,7 @@
     const foo = { clark: 'kent' };
     ```
 * 避免有超过 100 个字符的代码行（包括空格）。注意：根据之前的规定，长字符串可免除此规则，不应分解
-    > 为啥？这保证可读性和可维护性
+    > 为啥？这保证可读性和可维护性
     ```JavaScript
     // 别这样
     const foo = jsonData && jsonData.foo && jsonData.foo.bar && jsonData.foo.bar.baz && jsonData.foo.bar.baz.quux && jsonData.foo.bar.baz.quux.xyzzy;
@@ -2125,7 +2125,7 @@
         .fail(() => console.log('You have failed this city.'));
     ```
 ## 逗号（Commas）
-* 逗号放在行首： **不需要**
+* 逗号放在行首： **不需要**
     ```JavaScript
     // 别这样
     const story = [
@@ -2157,8 +2157,8 @@
         superPower: 'computers',
     };
     ```
-* 增加结尾处的逗号：**对**
-    > 为啥？这让 git diffs 更清晰。Babel 等编译器在编译代码时会移除尾部的逗号，这意味着你不需要担心古老浏览器中的尾部逗号问题
+* 增加结尾处的逗号：**对**
+    > 为啥？这让 git diffs 更清晰。Babel 等编译器在编译代码时会移除尾部的逗号，这意味着你不需要担心古老浏览器中的尾部逗号问题
     ```JavaScript
     // 别这样 - git diff without trailing comma
     const hero = {
@@ -2207,7 +2207,7 @@
         // does nothing
     }
 
-    // 要这样
+    // 要这样
     function createHero(
         firstName,
         lastName,
@@ -2216,7 +2216,7 @@
         // does nothing
     }
 
-    // 要这样 (note that a comma must not appear after a "rest" element)
+    // 要这样 (note that a comma must not appear after a "rest" element)
     function createHero(
         firstName,
         lastName,
@@ -2233,7 +2233,7 @@
         inventorOf
     );
 
-    // 要这样
+    // 要这样
     createHero(
         firstName,
         lastName,
@@ -2248,9 +2248,9 @@
         ...heroArgs
     );
     ```
-## 分号（Semicolons）
-* **用!**
-    > 为啥？当 JavaScript 遇到没有分号的换行符时，它使用一组称为 Automatic Semicolon Insertion 的规则来确定它是否应该将换行符视为语句的结尾，并且（如名称所示）将分号放入它所认为的一行代码的结束之处。但是，ASI 包含一些古怪的行为，如果 JavaScript 错误地解释了换行符，你的代码将会打断。随着 JavaScript 增加越来越多的新功能，这些规则将变得更加复杂。所以自己乖乖打分号并配置好 linter 以捕获缺少分号的语句，将有助于防止遇到古怪问题
+## 分号（Semicolons）
+* **用!**
+    > 为啥？当 JavaScript 遇到没有分号的换行符时，它使用一组称为 Automatic Semicolon Insertion 的规则来确定它是否应该将换行符视为语句的结尾，并且（如名称所示）将分号放入它所认为的一行代码的结束之处。但是，ASI 包含一些古怪的行为，如果 JavaScript 错误地解释了换行符，你的代码将会打断。随着 JavaScript 增加越来越多的新功能，这些规则将变得更加复杂。所以自己乖乖打分号并配置好 linter 以捕获缺少分号的语句，将有助于防止遇到古怪问题
     ```JavaScript
     // 别这样 - raises exception
     const luke = {}
@@ -2277,7 +2277,7 @@
         jedi.father = 'vader';
     });
 
-    // 要这样
+    // 要这样
     const reaction = "No! That's impossible!";
     (async function meanwhileOnTheFalcon() {
         // handle `leia`, `lando`, `chewie`, `r2`, `c3p0`
@@ -2289,11 +2289,11 @@
     return 'search your feelings, you know it to be foo';
     }
     ```
-## 类型转换和强制转换（Type Casting & Coercion）
+## 类型转换和强制转换（Type Casting & Coercion）
 * 在语句开头执行类型转换
 * 字符串：
     ```JavaScript
-    // => this.reviewScore = 9;
+    // => this.reviewScore = 9;
 
     // 别这样，调用 typeof 显示是 object 而不是 string
     const totalScore = new String(this.reviewScore);
@@ -2301,13 +2301,13 @@
     // 别这样，调用 this.reviewScore.valueOf()
     const totalScore = this.reviewScore + '';
 
-    // 别这样，不保证返回一个字符串
+    // 别这样，不保证返回一个字符串
     const totalScore = this.reviewScore.toString();
 
     // 别这样
     const totalScore = String(this.reviewScore);
     ```
-* 数字：使用 `Number` 来类型转换，解析字符串时使用 `parseInt`
+* 数字：使用 `Number` 来类型转换，解析字符串时使用 `parseInt`
     ```JavaScript
     const inputValue = '4';
 
@@ -2329,7 +2329,7 @@
     // 要这样
     const val = parseInt(inputValue, 10);
     ```
-* 如果无论出于何种原因，你正在做一些狂野的事情，并且 `parseInt` 是你的瓶颈，并且出于性能原因需要使用位移操作符，请留下注释来解释为什么和做什么
+* 如果无论出于何种原因，你正在做一些狂野的事情，并且 `parseInt` 是你的瓶颈，并且出于性能原因需要使用位移操作符，请留下注释来解释为什么和做什么
     ```JavaScript
     // 要这样
     /**
@@ -2349,7 +2349,7 @@
     ```JavaScript
     const age = 0;
 
-    // 别这样
+    // 别这样
     const hasAge = new Boolean(age);
 
     // 要这样
@@ -2371,18 +2371,18 @@
         // ...
     }
     ```
-* 为对象、函数、实例命名时遵循驼峰命名规则
+* 为对象、函数、实例命名时遵循驼峰命名规则
     ```JavaScript
     // 别这样
     const OBJEcttsssss = {};
     const this_is_my_object = {};
     function c() {}
 
-    // 要这样
+    // 要这样
     const thisIsMyObject = {};
     function thisIsMyFunction() {}
     ```
-* 只有在给类的构造器命名时使用帕斯卡命名规则
+* 只有在给类的构造器命名时使用帕斯卡命名规则
     ```JavaScript
     // 别这样
     function user(options) {
@@ -2404,8 +2404,8 @@
         name: 'yup',
     });
     ```
-* 别在首尾使用下划线
-    > 为啥？JavaScript 在属性、方法上没有 private 的概念。虽然在名称最前面加下划线通常表示这是一个 private 的东西，但事实上却是 public 的。这种约定可能会导致开发人员错误地认为更改不会被视为中断，或者不需要测试
+* 别在首尾使用下划线
+    > 为啥？JavaScript 在属性、方法上没有 private 的概念。虽然在名称最前面加下划线通常表示这是一个 private 的东西，但事实上却是 public 的。这种约定可能会导致开发人员错误地认为更改不会被视为中断，或者不需要测试
     ```JavaScript
     // 别这样
     this.__firstName__ = 'Panda';
@@ -2420,7 +2420,7 @@
     const firstNames = new WeakMap();
     firstNames.set(this, 'Panda');
     ```
-* 不要保存 `this` 的引用，使用箭头函数或者 `Function#bind`
+* 不要保存 `this` 的引用，使用箭头函数或者 `Function#bind`
     ```JavaScript
     // 别这样
     function foo() {
@@ -2445,7 +2445,7 @@
         };
     }
     ```
-* 基本的文件名应该与默认导出的名字完全匹配
+* 基本的文件名应该与默认导出的名字完全匹配
     ```JavaScript
     // file 1 contents
     class CheckBox {
@@ -2478,7 +2478,7 @@
     import insideDirectory from './insideDirectory'; // camelCase export/import/directory name/implicit "index"
     // ^ supports both insideDirectory.js and insideDirectory/index.js
     ```
-* 导出默认函数时取名应遵循驼峰命名规则。你的文件名和函数名应该保持一致
+* 导出默认函数时取名应遵循驼峰命名规则。你的文件名和函数名应该保持一致
     ```JavaScript
     function makeStyleGuide() {
         // ...
@@ -2486,7 +2486,7 @@
 
     export default makeStyleGuide;
     ```
-* 当你导出一个构造器/ 类/ 单例/ 函数库/ 裸对象时遵循帕斯卡命名规则 
+* 当你导出一个构造器/ 类/ 单例/ 函数库/ 裸对象时遵循帕斯卡命名规则 
     ```JavaScript
     const AirbnbStyleGuide = {
         es6: {
@@ -2513,7 +2513,7 @@
     // ...
     ];
 
-    // 也不错
+    // 也不错
     const httpRequests = [
     // ...
     ];
@@ -2526,13 +2526,13 @@
         // ...
     ];
     ```
-* 以下几种情况你可以将一个常量大写：
+* 以下几种情况你可以将一个常量大写：
     * 用于导出
     * 是 `const`（不能被重新赋值）
     * 程序员认定它（以及它的嵌套属性）不会改变
     > 为啥？这是一个额外的工具，可以帮助程序员知道变量是否会发生变化。 全大写的变量让程序员知道他们可以相信这变量（及其属性）不会发生改变
     * 所有 `const` 都要这样？这不是必须的，所以不应该将全大写格式用于文件中的常量。但是，它应该用于导出的产量
-    * 对于导出的对象呢？大写位于导出顶级的部分（例如 EXPORTED_OBJECT.key），并保持所有嵌套属性不会更改
+    * 对于导出的对象呢？大写位于导出顶级的部分（例如 EXPORTED_OBJECT.key），并保持所有嵌套属性不会更改
     ```JavaScript
     // 别这样
     const PRIVATE_VARIABLE = 'should not be unnecessarily uppercased within a file';
@@ -2563,8 +2563,8 @@
         key: 'value'
     };
     ```
-## 访问器（Accessors）
-* 属性的访问器方法不是必须的
+## 访问器（Accessors）
+* 属性的访问器方法不是必须的
 * 不要使用 JavaScript getters / setter，因为它们会导致意想不到的副作用，而且更难以测试、维护和推理。相反，如果你做访问器，使用 `getVal()` 和 `setVal('hello')`
     ```JavaScript
     // 别这样
@@ -2591,7 +2591,7 @@
     ```
 * 如果一个属性的类型或者方法的返回类型是 `boolean`，使用 `isVal()` 或者 `hasVal()`
     ```JavaScript
-    // 别这样
+    // 别这样
     if (!dragon.age()) {
         return false;
     }
@@ -2618,8 +2618,8 @@
         }
     }
     ```
-## 事件（Events）
-* 将数据附加到事件（无论是 DOM 事件还是诸如 Backbone 事件的更专有的东西）时，传递对象字面量（也称为 “hash”）而不是原始值。 这允许后续贡献者向事件添加更多数据，而无需查找和更新事件的每个处理程序，例如，不要这样做：
+## 事件（Events）
+* 将数据附加到事件（无论是 DOM 事件还是诸如 Backbone 事件的更专有的东西）时，传递对象字面量（也称为 “hash”）而不是原始值。 这允许后续贡献者向事件添加更多数据，而无需查找和更新事件的每个处理程序，例如，不要这样做：
     ```JavaScript
     // 别这样
     $(this).trigger('listingUpdated', listing.id);
@@ -2644,10 +2644,10 @@
 ## jQuery
 * 使用 `$` 前缀 jQuery 对象变量
     ```JavaScript
-    // 别这样
+    // 别这样
     const sidebar = $('.sidebar');
 
-    // 要这样
+    // 要这样
     const $sidebar = $('.sidebar');
 
     // 要这样
@@ -2678,7 +2678,7 @@
         });
     }
     ```
-* DOM 查询时使用级联 `$('.sidebar ul')` 或者 parent > child `$('.sidebar > ul')`
+* DOM 查询时使用级联 `$('.sidebar ul')` 或者 parent > child `$('.sidebar > ul')`
 * 对有作用域的 jQuery 对象使用 `find` 进行查询
     ```JavaScript
     // 别这样
@@ -2696,7 +2696,7 @@
     // 要这样
     $sidebar.find('ul').hide();
     ```
-> 以下章节内容全是链接，暂未翻译
+> 以下章节内容全是链接，暂未翻译
 ## ECMAScript 5 Compatibility
 ## ECMAScript 6+ (ES 2015+) Styles
 ## Standard Library
