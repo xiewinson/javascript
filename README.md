@@ -8,24 +8,24 @@
     * `null`
     * `undefined`
     * `symbol`
-
-	  ```JavaScript
-    const foo = 1;
-    let bar = foo;
-    bar = 9;
-    console.log(foo, bar); // => 1, 9
-    ```
+    
+```JavaScript
+const foo = 1;
+let bar = foo;
+bar = 9;
+console.log(foo, bar); // => 1, 9
+```
 * 复杂类型: 使用引用去访问
     * `object`
     * `array`
     * `function`
 
-	  ```JavaScript
-    const foo = [1, 2];
-    const bar = foo;
-    bar[0] = 9;
-    console.log(foo[0], bar[0]); // => 9, 9
-    ```
+```JavaScript
+const foo = [1, 2];
+const bar = foo;
+bar[0] = 9;
+console.log(foo[0], bar[0]); // => 9, 9
+```
 ## 引用（References）
 * 使用 `const` 声明引用类型，避免使用 `var`
     > 为啥？这会确保你不能重新给引用赋值，以免造成 bug，也避免难以理解这段代码
