@@ -9,7 +9,7 @@
     * `undefined`
     * `symbol`
 
-	```JavaScript
+	  ```JavaScript
     const foo = 1;
     let bar = foo;
     bar = 9;
@@ -20,7 +20,7 @@
     * `array`
     * `function`
 
-	```JavaScript
+	  ```JavaScript
     const foo = [1, 2];
     const bar = foo;
     bar[0] = 9;
@@ -1355,7 +1355,7 @@
     // the same applies for `const`
     ```
 * 不要使用 `++` 和 `--`
-    > 为啥？根据 eslint 文档，一元递增和递减语句会受到自动分号插入的影响，并且可能导致应用程序中的值递增或递减，从而导致无提示错误。使用像 num + = 1 而不是 num++ 或 num++ 这样的语句来更改数值也更具有表现力。禁止一元递增和递减语句也会阻止您无意中预先递增/预递减值，这也会导致程序中的意外行为
+    > 为啥？根据 eslint 文档，一元递增和递减语句会受到自动分号插入的影响，并且可能导致应用程序中的值递增或递减，从而导致无提示错误。使用像 num += 1 而不是 num++ 或 num++ 这样的语句来更改数值也更具有表现力。禁止一元递增和递减语句也会阻止您无意中预先递增/预递减值，这也会导致程序中的意外行为
 
 	```JavaScript
     // 别这样
