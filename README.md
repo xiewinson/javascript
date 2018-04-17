@@ -1494,7 +1494,7 @@
     * **Booleans** 被计算为 **boolean的值**
     * **Numbers** 在值为 **+0, -0, NaN 时为false**，其他情况为 **true**
     * **Strings** 在 **空字符串`''`** 时为 **false**，其他情况为 **true**
-
+  >
 	```JavaScript
     if ([0] && []) {
         // true
