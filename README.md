@@ -9,7 +9,7 @@
     * `undefined`
     * `symbol`
     
-    ``` JavaScript
+	```JavaScript
     const foo = 1;
     let bar = foo;
     bar = 9;
@@ -19,7 +19,6 @@
     * `object`
     * `array`
     * `function`
-
     ``` JavaScript
     const foo = [1, 2];
     const bar = foo;
@@ -28,7 +27,7 @@
     ```
 ## 引用（References）
 * 使用 `const` 声明引用类型，避免使用 `var`
-    > 为啥？这会确保你不能重新给引用赋值，以免造成 bug，也避免难以理解这段代码 
+    > 为啥？这会确保你不能重新给引用赋值，以免造成 bug，也避免难以理解这段代码
     ```JavaScript
     // 别这样
     var a = 1;
@@ -37,9 +36,10 @@
     // 要这样
     const a = 1;
     const b = 2;
-    ```   
+    ```
 * 如果偏要重新赋值，使用 `let` 代替 `var`
-    > 为啥？`let` 是块级作用域，`var` 作为函数级作用域会发生变量提升，在很多场景下没有必要并且难以理解那段代码
+    
+	> 为啥？`let` 是块级作用域，`var` 作为函数级作用域会发生变量提升，在很多场景下没有必要并且难以理解那段代码
     ```JavaScript
     // 别这样
     var count = 1;
@@ -52,7 +52,7 @@
     if (true) {
         count += 1;
     }
-    ```    
+    ```
 * 请注意 `let` 和 `const` 是块级作用域
     ```JavaScript
     // const 和 let 只会存在于所定义的块中
@@ -181,8 +181,8 @@
     console.log(Object.prototype.hasOwnProperty.call(object, key));
 
     // 这样最佳，在 module 级缓存
-    const has = Object.prototype.hasOwnProperty; 
-    
+    const has = Object.prototype.hasOwnProperty;
+
     /* or */
     import has from 'has';
     console.log(has.call(object, key));
@@ -192,8 +192,8 @@
     // 特糟糕
     const original = { a: 1, b: 2 };
     // 下面这个骚操作改变了 original 对象原有的属性 ಠ_ಠ
-    const copy = Object.assign(original, { c: 3 }); 
-    delete copy.a; 
+    const copy = Object.assign(original, { c: 3 });
+    delete copy.a;
 
     // 也别这样
     const original = { a: 1, b: 2 };
@@ -202,10 +202,10 @@
 
     // 要这样
     const original = { a: 1, b: 2 };
-    const copy = { ...original, c: 3 }; 
+    const copy = { ...original, c: 3 };
     // copy => { a: 1, b: 2, c: 3 }
 
-    const { a, ...noA } = copy; 
+    const { a, ...noA } = copy;
     // noA => { b: 2, c: 3 }
     ```
 ## 数组（Arrays）
@@ -560,7 +560,7 @@
     count();  // 1
     count();  // 2
     count(3); // 3
-    count();  // 3    
+    count();  // 3
     ```
 * 把默认参数放在最后一个
     ```JavaScript
@@ -669,7 +669,7 @@
 ## 箭头函数（Arrow Functions）
 * 当你必须使用匿名函数时（比如当传递一个内联回调），使用箭头函数
     > 为啥？箭头函数中的 `this` 指代的是定义函数时所处的对象，而非执行时的对象，在符合通常的使用情景，而且这个语法更简洁
-    
+
     >为啥不呢？如果是一个相当复杂的方法，你可能应该把逻辑转移到另一个函数表达式上
     ```JavaScript
     // 别这样
@@ -682,7 +682,7 @@
     [1, 2, 3].map((x) => {
         const y = x + 1;
         return x * y;
-    });    
+    });
     ```
 * 如果方法体的构成是一条单一的且无副作用的返回语句，省略花符号并使用隐式返回，否则，保持连接符号和 `return` 语句
     > 为啥？语法糖。链式调用时可读性不错
@@ -741,7 +741,7 @@
         httpMagicObjectWithAVeryLongName,
         httpMethod,
     )
-    ));    
+    ));
     ```
 * 如果你的函数只有单行且没有用花符号，那就省略括号，否则就保持括号包裹参数以达到清晰与一致性
     > 为啥？视觉一致性
@@ -906,7 +906,7 @@
             super(...args);
             this.name = 'Rey';
         }
-    }    
+    }
     ```
 * 避免重复声明类成员
     > 为啥？重复声明的情况只有最后一个生效，毫无疑问重复声明是个 bug
@@ -931,7 +931,7 @@
 * 使用 `import/export`，不使用非标准的模块系统。你可以编译成你偏爱的模块系统
     > 为啥？模块是未来，让我们现在开始享受未来
     ```JavaScript
-    
+
     // 别这样
     const AirbnbStyleGuide = require('./AirbnbStyleGuide');
     module.exports = AirbnbStyleGuide.es6;
@@ -942,7 +942,7 @@
 
     // 最佳
     import { es6 } from './AirbnbStyleGuide';
-    export default es6;        
+    export default es6;
     ```
 * 不要使用通配符导入
     > 为啥？确保你只有一个单一的默认导出
@@ -963,7 +963,7 @@
     // 要这样
     // filename es6.js
     import { es6 } from './AirbnbStyleGuide';
-    export default es6;    
+    export default es6;
     ```
 * 一个路径只使用一次 `import`
     > 为啥？对相同的路径有多行的 `import` 会让代码难以维护
@@ -1046,7 +1046,7 @@
 ## 迭代器和生成器（Iterators and Generators）
 * 不要使用迭代，使用 JavaScript 的高阶函数代替例如 `for-in` 或者 `for-of`
     > 为啥？相比副作用，处理单纯函数的返回值更易理解
-    
+
     > 使用 `map()` / `every()` / `filter()` / `find()` / `findIndex()` / `reduce()` / `some()` / ... 等等来遍历数组, 使用 `Object.keys()` / `Object.values()` / `Object.entries()`来生成数组就可以遍历对象了
     ```JavaScript
     const numbers = [1, 2, 3, 4, 5];
@@ -1085,7 +1085,7 @@
     const increasedByOne = numbers.map(num => num + 1);
     ```
 * 目前不要使用生成器
-    > 为啥？这还不能很好的编译到 ES5 
+    > 为啥？这还不能很好的编译到 ES5
 * 如果你必须使用生成器，或者你无视我们的忠告，请确保函数签名有正确的间隔
     > 为啥？函数和 `*` 有些概念上的相似，`*` 不是函数的修饰符，`function*` 是一个独特的构造器，不同于 `function`
     ```JavaScript
@@ -1268,7 +1268,7 @@
     ```JavaScript
     // 别这样
     (function example() {
-       
+
         // let 只作用域 a，b、c 会变成全局变量
         let a = b = c = 1;
     }());
@@ -1424,7 +1424,7 @@
     ```JavaScript
     if ([0] && []) {
         // true
-        // 一个数组（即便是空数组）是一个对象，对象就会被计算为 true 
+        // 一个数组（即便是空数组）是一个对象，对象就会被计算为 true
     }
     ```
 * 比较布尔类型时用简写形式，但显式比较字符串和数字
@@ -1907,7 +1907,7 @@
     const x=y+5;
 
     // 要这样
-    const x = y + 5; 
+    const x = y + 5;
     ```
 * 结束文件时打一个换行
     ```JavaScript
@@ -2486,7 +2486,7 @@
 
     export default makeStyleGuide;
     ```
-* 当你导出一个构造器/ 类/ 单例/ 函数库/ 裸对象时遵循帕斯卡命名规则 
+* 当你导出一个构造器/ 类/ 单例/ 函数库/ 裸对象时遵循帕斯卡命名规则
     ```JavaScript
     const AirbnbStyleGuide = {
         es6: {
