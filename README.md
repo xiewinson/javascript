@@ -21,7 +21,7 @@
     * `object`
     * `array`
     * `function`
-    >
+    >    
     ```JavaScript
     const foo = [1, 2];
     const bar = foo;
@@ -532,6 +532,7 @@
     }
     ```
 * 不要把一个参数命名为 `arguments`，这将排挤掉函数作用域中的 `arguments` 对象
+    
     ``` JavaScript
     // 别这样
     function foo(name, options, arguments) {
@@ -544,7 +545,9 @@
     }
     ```
 * 使用剩余（rest）操作符 `...` 替代 `arguments`
+    
     > 为啥？`...` 能更明确哪些参数是你想要拉取的。更重要的是，这是一个真正的数组，而不是 `arguments` 这样的仅仅是类数组对象
+    
     ``` JavaScript
     // 别这样
     function concatenateAll() {
@@ -619,7 +622,9 @@
     var subtract = Function('a', 'b', 'return a - b');
     ```
 * 在方法签名处打空格
+    
     > 为啥？一致性是好的，你不应该增加或移除空格当增加或移除一个名字
+    
     ``` JavaScript
     // 别这样
     const f = function(){};
@@ -657,6 +662,7 @@
     ```
 * 对于可变参数的函数推荐使用扩展操作符 `...`
     > 为啥？清晰！你不需要提供一个 context，组合 `new` 和 `apply` 也不太易用
+    
     ``` JavaScript
     // 别这样
     const x = [1, 2, 3, 4, 5];
@@ -766,6 +772,7 @@
     ```
 * 如果表达式有多行，用括号包裹起来可读性更好
     > 为啥？折让函数的开始和结尾都会清晰
+    
     ``` JavaScript
     // bad
     ['get', 'post', 'put'].map(httpMethod => Object.prototype.hasOwnProperty.call(
@@ -783,6 +790,7 @@
     ));
     ```
 * 如果你的函数只有单行且没有用花符号，那就省略括号，否则就保持括号包裹参数以达到清晰与一致性
+    
     > 为啥？视觉一致性
 
 	```JavaScript
@@ -2628,12 +2636,12 @@
 
     // 要这样
     const HTTPRequests = [
-    // ...
+        // ...
     ];
 
     // 也不错
     const httpRequests = [
-    // ...
+        // ...
     ];
 
     // 最佳
